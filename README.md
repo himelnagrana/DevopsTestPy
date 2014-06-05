@@ -62,7 +62,7 @@ In this repo I tried to include the problem set and my answers -- for the sake o
             - (*assume specified number of availability zone is even*) If number of instances specified to launch is equal then place them equally on multiple availability zones. And if number of instances is odd then the first availability-zone specified in the list should get priority for the extra instance.
 
 
- 2. ####**THIRD**:  
+ 3. ####**THIRD**:  
     A nginx configuration like the following:
     ```
     user www-data;
