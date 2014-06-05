@@ -1,0 +1,110 @@
+---------------PART ONE---------------
+================================================================================================================================================================
+
+You will have to build a command line program with Python that downloads files over the network and store them on the local file system. The program will receive two inputs:
+
+1. The URL of an RSS Feed containing links to the files to be downloaded (a sample is given below)
+
+2. The path to the directory where the downloaded files are going to be stored is
+
+
+python downloader.py --feed=<RSS-Feed-URL> --output=<PATH-TO-DIRECTORY>
+
+        
+Requirements 
+The program has to remember if a file has been downloaded previously. So if the file has been downloaded once, it skips downloading it again.
+If a file has been downloaded partially, it can resume from the point where it left off.
+The program should be able to log its activities in a text file.
+The program should support both HTTP and FTP.
+The program should be designed in a way so that it can be easily extended to support additional protocols
+    
+Bonus points if your program is capable of downloading multiple files in parallel.
+
+Here is a link to the sample RSS Feed: https://dl.dropboxusercontent.com/u/6160850/downloads.rss
+
+
+
+
+---------------PART TWO---------------
+================================================================================================================================================================
+
+Properly document your work with comments/explanations for the codes and use github gist to submit your work.
+
+You may find these informations useful: 
+https://github.com/boto/boto
+http://aws.amazon.com/documentation/ec2/
+
+###
+Write a python script using boto that will spin up and configure a new EC2 instance on AWS.
+
+Your script should do the following tasks:
+
+1. Create a security group called: code-test-access
+ With the following configuration:
+
+Enable TCP 22 only for 203.112.73.8
+Enable TCP 80 for rest of the world
+Restrict access to all other TCP/UDP port
+
+2. Provision an EC2 instance. And use the following default parameters. Remember to accept command line parameters for them as well.
+
+AMI: ami-0b9c9f62
+Instance type: m1.large
+Availability zone: us-east-1B
+Use a dummy AWS access-key value, secret-access-key value and key file name in your code.
+
+After provisioning print the instance ID and it’s public DNS address and status. 
+
+3. Set the following tags on that instance:
+
+name code-test-01
+env    dev
+role   code-test-instance
+
+
+
+
+
+Bonus point:
+If your script can take value for number of instances to launch and also take value for multiple availability zone name (e.g. us-east-1b, us-east-1c) to launch instances on those availability zones.
+
+(assume specified number of availability zone is even)
+If number of instances specified to launch is equal then place them equally on multiple availability zones. And if number of instances is odd then the first availability-zone specified in the list should get priority for the extra instance.
+
+
+
+
+
+---------------PART THREE--------------- 
+================================================================================================================================================================
+(You can code and provide a solution for the following question, host it on github gist and submit the link before the deadline (March 16th) though email to Rana Khandkar (rana@newscred.com)
+
+###
+I have a nginx configuration like the following:
+
+user www-data;
+worker_processes 8;
+pid /var/run/nginx.pid;
+
+events {
+        worker_connections 4096;
+        multi_accept on;
+}
+
+http {
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 30;
+        types_hash_max_size 2048;
+        ….
+        …
+        ….
+    }
+
+I’m expecting to serve around 200 requests/second with this configuration with a system of 4 CPU core and 8 Gb of memory. And the site I’m planning to serve is quite static in nature.
+
+1. What is wrong in this configuration?
+2. What optimization is required to handle the specified amount of traffic.
+3. Do you think there are any external system settings needs to be tuned to achieve this? Specify exact solutions.
+
